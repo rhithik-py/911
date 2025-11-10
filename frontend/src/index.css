@@ -1,68 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global theme overrides */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --bg: #0D0D0D;
+  --accent1: #C0C0C0;
+  --accent2: #D72638;
+  --text: #FFFFFF;
+  --hover: #007BFF;
+}
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+html, body, #root {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+/* neon/glow utilities */
+.neon-text {
+  text-shadow: 0 0 8px rgba(199,199,199,0.12), 0 0 20px rgba(0,123,255,0.06);
 }
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+.card-glow {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6), 0 0 20px rgba(215,38,56,0.05);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Floating label form */
+.input-floating {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 1rem 0.75rem 0.25rem;
+  border-radius: 0.5rem;
+  position: relative;
 }
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+.input-floating input {
+  background: transparent;
+  color: var(--text);
+  outline: none;
 }
-button:hover {
-  border-color: #646cff;
+.input-floating label {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  pointer-events: none;
+  transition: all 0.18s ease;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.9rem;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.input-floating input:focus + label,
+.input-floating input:not(:placeholder-shown) + label {
+  transform: translateY(-0.9rem);
+  font-size: 0.75rem;
+  color: var(--accent2);
 }
